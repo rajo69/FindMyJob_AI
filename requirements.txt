@@ -1,4 +1,4 @@
 PyPDF2
 docx
 openai
-fpdfx
+fpdf

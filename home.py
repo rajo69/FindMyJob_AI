@@ -28,7 +28,7 @@ def extract_text_from_pdf(pdf_file):
     count = len(pdf_reader.pages)
     text = ""
     for i in range(count):
-        page = pdf_reader.getPage(i)
+        page = pdf_reader.pages[i]
         text += page.extractText()
     return text
 

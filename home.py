@@ -29,7 +29,7 @@ def extract_text_from_pdf(pdf_file):
     text = ""
     for i in range(count):
         page = pdf_reader.pages[i]
-        text += page.extractText()
+        text += page.extract_text()
     return text
 
 def create_pdf(text):

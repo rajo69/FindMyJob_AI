@@ -1,5 +1,5 @@
 import streamlit as st
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 #from docx import Document
 from openai import OpenAI
 import io
@@ -24,7 +24,7 @@ if 'terms_agreed' not in st.session_state:
 
 # Function to extract text from a PDF
 def extract_text_from_pdf(pdf_file):
-    pdf_reader = PdfFileReader(pdf_file)
+    pdf_reader = PdfReader(pdf_file)
     count = pdf_reader.numPages
     text = ""
     for i in range(count):

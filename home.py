@@ -25,7 +25,7 @@ if 'terms_agreed' not in st.session_state:
 # Function to extract text from a PDF
 def extract_text_from_pdf(pdf_file):
     pdf_reader = PdfReader(pdf_file)
-    count = pdf_reader.numPages
+    count = len(pdf_reader.pages)
     text = ""
     for i in range(count):
         page = pdf_reader.getPage(i)

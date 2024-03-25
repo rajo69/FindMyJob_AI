@@ -1,8 +1,0 @@
-streamlit as st
-PyPDF2
-docx
-OpenAI
-io
-FPDF
-pyperclip
-firebase_admin

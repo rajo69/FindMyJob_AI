@@ -1,12 +1,9 @@
 import streamlit as st
 from PyPDF2 import PdfFileReader
-from docx import Document
+#from docx import Document
 from openai import OpenAI
 import io
 from fpdf import FPDF
-import pyperclip
-import firebase_admin
-from firebase_admin import credentials, firestore
 
 # Path to your service account key file
 cred_path = 'findmyjob-b17c4-firebase-adminsdk-v2nbt-68d5da6e24.json'
@@ -77,14 +74,14 @@ else:
             rc_choice = st.toggle('Enhanced resume')
         
         # Process DOCX file
-        elif file_type.lower() == 'docx':
-            file_text = extract_text_from_docx(io.BytesIO(uploaded_file.getvalue()))
-            role = st.text_input("Job role")
-            Company = st.text_input("Company name")
-            additional_text = st.text_area('Please enter job description', height=300)
-            word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
-            generate = st.button('Generate')
-            rc_choice = st.toggle('Enhanced resume')
+#        elif file_type.lower() == 'docx':
+#            file_text = extract_text_from_docx(io.BytesIO(uploaded_file.getvalue()))
+#            role = st.text_input("Job role")
+#            Company = st.text_input("Company name")
+#            additional_text = st.text_area('Please enter job description', height=300)
+#            word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
+#            generate = st.button('Generate')
+#            rc_choice = st.toggle('Enhanced resume')
         
         # Process TXT file
         elif file_type.lower() == 'txt':
@@ -113,7 +110,7 @@ if file_text and additional_text and generate:
     )
         response = completion.choices[0].message.content
         st.write(response)
-        
+
     else:
         completion = client.chat.completions.create(
         model="gpt-3.5-turbo",

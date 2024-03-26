@@ -1,6 +1,6 @@
 import streamlit as st
 from PyPDF2 import PdfReader
-#from docx import Document
+from docx import Document
 from openai import OpenAI
 import io
 from fpdf import FPDF

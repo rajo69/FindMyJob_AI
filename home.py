@@ -5,12 +5,9 @@ from openai import OpenAI
 import io
 from fpdf import FPDF
 
-# Path to your service account key file
-cred_path = 'findmyjob-b17c4-firebase-adminsdk-v2nbt-68d5da6e24.json'
-
 file_text, additional_text, generate, Company, role, word_limit = '', '', '', '', '', 200
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = st.secrets['openai_api_key']
 
 st.title('FindMyJob.AI')
 

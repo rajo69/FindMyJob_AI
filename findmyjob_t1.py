@@ -7,6 +7,8 @@ from fpdf import FPDF
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import random
+from datetime import datetime
 
 # Firebase service account key as a Python dictionary
 firebase_config = {
@@ -162,6 +164,9 @@ if file_text and additional_text and generate:
                         file_name="Cover_Letter.pdf",
                         mime="application/pdf"):
             st.success('Downloaded!')
+
+    if user_id == 'unknown_user':
+        user_id = 'u'+ str(random.randrange(10000000,99999999)) + str(datetime.datetime.now())
     # Add a new document
     doc_ref = db.collection('user_data').document(user_id)
     doc_ref.set({

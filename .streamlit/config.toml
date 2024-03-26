@@ -1,0 +1,13 @@
+# Config file for Streamlit settings
+
+# Theme settings for the app
+[theme]
+primaryColor="#6c4fa1"
+backgroundColor="#f0eef9"
+secondaryBackgroundColor="#dcd0ff"
+textColor="#333333"
+font="sans serif"
+
+# Browser gather usage statistics
+[browser]
+gatherUsageStats=true

@@ -15,6 +15,7 @@ client = OpenAI(api_key = OPENAI_API_KEY)
 
 # Initialize session state for terms agreement
 if 'terms_agreed' not in st.session_state:
+    st.image('https://openclipart.org/image/2400px/svg_to_png/29833/warning.png', width=200)
     st.write('WARNING !!!\nWE WILL USE YOUR ANONYMIZED DATA TO IMPROVE OUR SERVICES. ALL OF OUR SERVICES WILL FOREVER BE FREE!')
     st.write('CAUTION !!!\nPLEASE UPLOAD YOUR COMPLETE RESUME AND COMPLETE JOB DESCRIPTION TO GET THE BEST RESULT.\nGARBAGE IN GARBAGE OUT.')
     st.session_state['terms_agreed'] = False
@@ -67,8 +68,8 @@ else:
             Company = st.text_input("Company name")
             additional_text = st.text_area('Please enter job description', height=300)
             word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
-            generate = st.button('Generate')
             rc_choice = st.toggle('Enhanced resume')
+            generate = st.button('Generate')
         
         # Process DOCX file
         elif file_type.lower() == 'docx':
@@ -77,8 +78,8 @@ else:
             Company = st.text_input("Company name")
             additional_text = st.text_area('Please enter job description', height=300)
             word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
-            generate = st.button('Generate')
             rc_choice = st.toggle('Enhanced resume')
+            generate = st.button('Generate')
         
         # Process TXT file
         elif file_type.lower() == 'txt':
@@ -87,8 +88,8 @@ else:
             Company = st.text_input("Company name")
             additional_text = st.text_area('Please enter job description', height=300)
             word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
-            generate = st.button('Generate')
             rc_choice = st.toggle('Enhanced resume')
+            generate = st.button('Generate')
 
 # Display both texts
 if file_text and additional_text and generate:
@@ -98,24 +99,26 @@ if file_text and additional_text and generate:
     content_r = comp_role + " I have given my resume under the section 'Resume:' and the job and company description under the section 'Job and company description:' later in this prompt. I want you to analyze both the information thoroughly and write me an enhanced resume with proper word formatting" + word + "modifying my experiences and skills mentioned under 'Resume:' in accordance with that of the the required skills and responsibilities mentioned under ' Job and company description:'. Remember to only give either an entire resume as output or no output at all, remember to just give resume and no other information and the resume should have no place holders and it should have made up metrics if my 'Resume:' does not already have any and strong action words and ATS friendly words. Here are my 'Resume:' and 'Job and company description:' for your reference\nResume:" + file_text +"\nJob and company description:" + additional_text
 
     if rc_choice:
-        completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
-            {"role": "user", "content":  content_r}
-        ]
-    )
+        with st.spinner('Writing your enahanced resume...'):
+            completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
+                {"role": "user", "content":  content_r}
+            ]
+        )
         response = completion.choices[0].message.content
         st.write(response)
 
     else:
-        completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
-            {"role": "user", "content":  content_c}
-        ]
-    )
+        with st.spinner('Writing your cover letter...'):
+            completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
+                {"role": "user", "content":  content_c}
+            ]
+        )
         response = completion.choices[0].message.content
         st.write(response)
         pdf_bytes = create_pdf(response)

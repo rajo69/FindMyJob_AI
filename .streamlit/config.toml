@@ -11,3 +11,11 @@ font="sans serif"
 # Browser gather usage statistics
 [browser]
 gatherUsageStats=true
+
+# Deprecation settings to suppress warnings
+[deprecation]
+showPyplotGlobalUse=false
+
+# Client settings to control UI elements
+[client]
+displayEnabled=true

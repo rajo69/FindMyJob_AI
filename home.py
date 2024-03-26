@@ -7,7 +7,7 @@ from fpdf import FPDF
 
 file_text, additional_text, generate, Company, role, word_limit = '', '', '', '', '', 200
 
-OPENAI_API_KEY = st.secrets["openai"]["openai_api_key"]
+OPENAI_API_KEY = st.secrets["openai_api_key"]
 
 st.title('FindMyJob.AI')
 

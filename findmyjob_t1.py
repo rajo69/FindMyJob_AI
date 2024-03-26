@@ -166,7 +166,7 @@ if file_text and additional_text and generate:
             st.success('Downloaded!')
 
     if user_id == 'unknown_user':
-        user_id = 'u'+ str(random.randrange(10000000,99999999)) + str(datetime.datetime.now())
+        user_id = 'u'+ str(random.randrange(10000000,99999999)) + str(datetime.now())
     # Add a new document
     doc_ref = db.collection('user_data').document(user_id)
     doc_ref.set({

@@ -9,6 +9,10 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import random
 from datetime import datetime
+import warnings
+
+# Suppress all warnings
+warnings.filterwarnings("ignore")
 
 # Firebase service account key as a Python dictionary
 firebase_config = {
@@ -35,10 +39,10 @@ db = firestore.client()
 # Generate a unique user identifier (for demonstration, using the session's client IP)
 user_id = st.session_state.remote_ip if "remote_ip" in st.session_state else "unknown_user"
 
-if user_id == "unknown_user":
+#if user_id == "unknown_user":
     # Attempting to fetch the client's IP (Streamlit Cloud method)
-    st.session_state.remote_ip = st.experimental_get_query_params().get("client_ip", ["unknown_user"])[0]
-    user_id = st.session_state.remote_ip 
+#    st.session_state.remote_ip = st.experimental_get_query_params().get("client_ip", ["unknown_user"])[0]
+#    user_id = st.session_state.remote_ip 
 
 file_text, additional_text, generate, Company, role, word_limit = '', '', '', '', '', 200
 

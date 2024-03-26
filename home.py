@@ -103,7 +103,7 @@ if file_text and additional_text and generate:
             completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
+                {"role": "system", "content": st.secrets["p1"]},
                 {"role": "user", "content":  content_r}
             ]
         )
@@ -115,7 +115,7 @@ if file_text and additional_text and generate:
             completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an expert recruitment consultant having 20 years of experience and specializes in writing cover letters and resumes by analyzing the resume of candidates and relating their experience with the required skills and responsibilities given in the job description and alligning candidate goals to the company objectives with creative flair."},
+                {"role": "system", "content": st.secrets["p1"]},
                 {"role": "user", "content":  content_c}
             ]
         )

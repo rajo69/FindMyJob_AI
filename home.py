@@ -36,7 +36,7 @@ def create_pdf(text):
     pdf.set_font("Times", size=12)
     pdf.multi_cell(0, 10, text)
     # Use 'S' to get the PDF as a string, then encode to 'latin-1' to get bytes
-    pdf_bytes = pdf.output(dest='S').encode('ascii')  # Correct encoding for PDF data
+    pdf_bytes = pdf.output(dest='S').encode('windows-1252')  # Correct encoding for PDF data
     return pdf_bytes
 
 # Function to extract text from a DOCX

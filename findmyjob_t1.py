@@ -89,7 +89,7 @@ if not st.session_state['terms_agreed']:
         st.session_state['terms_agreed'] = True
 else:
     # File uploader
-    uploaded_file = st.file_uploader("Upload your resume here (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"])
+    uploaded_file = st.file_uploader("Upload your resume here (PDF, DOCX, TXT)", type=["pdf", "docx", "txt"], accept_multiple_files=False)
     
     file_text = ""
     # Check if there is a file uploaded

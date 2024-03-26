@@ -22,9 +22,10 @@ firebase_config = {
   "client_x509_cert_url": st.secrets["client_x509_cert_url"]
 }
 
-# Initialize the app with the credentials
-cred = credentials.Certificate(firebase_config)
-firebase_admin.initialize_app(cred)
+# Initialize firebase app
+if not firebase_admin._apps:
+    cred = credentials.Certificate(firebase_config)
+    firebase_admin.initialize_app(cred)
 
 # Initialize Firestore
 db = firestore.client()

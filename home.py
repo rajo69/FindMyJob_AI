@@ -74,14 +74,14 @@ else:
             rc_choice = st.toggle('Enhanced resume')
         
         # Process DOCX file
-#        elif file_type.lower() == 'docx':
-#            file_text = extract_text_from_docx(io.BytesIO(uploaded_file.getvalue()))
-#            role = st.text_input("Job role")
-#            Company = st.text_input("Company name")
-#            additional_text = st.text_area('Please enter job description', height=300)
-#            word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
-#            generate = st.button('Generate')
-#            rc_choice = st.toggle('Enhanced resume')
+        elif file_type.lower() == 'docx':
+            file_text = extract_text_from_docx(io.BytesIO(uploaded_file.getvalue()))
+            role = st.text_input("Job role")
+            Company = st.text_input("Company name")
+            additional_text = st.text_area('Please enter job description', height=300)
+            word_limit = st.select_slider("Word limit", options = [100, 150, 200, 250, 300, 350, 400, 450, 500])
+            generate = st.button('Generate')
+            rc_choice = st.toggle('Enhanced resume')
         
         # Process TXT file
         elif file_type.lower() == 'txt':

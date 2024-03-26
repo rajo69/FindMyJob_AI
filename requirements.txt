@@ -2,3 +2,4 @@ PyPDF2
 python-docx
 openai
 fpdf
+firebase-admin
